@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h2>Students</h2>
+    <a href="{% url 'add' %}">Add Student</a><br><br>
+    <table>
+        <tr>
+            <th>Name</th><th>Email</th><th>Age</th><th>Phone</th><th>College</th><th>Dept</th><th>Actions</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.college }}</td>
+            <td>{{ s.department }}</td>
+            <td>
+                <a href="{% url 'edit' s.id %}">Edit</a>
+                <a href="{% url 'delete' s.id %}" class="btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
